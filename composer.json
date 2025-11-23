@@ -1,0 +1,44 @@
+{
+  "name": "xtramile/news-internal",
+  "description": "Shared models, migrations, and services for multi-tenant news platform.",
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": "^8.2",
+    "ext-pdo": "*",
+    "laravel/framework": "^11.0 || ^12.0",
+    "cviebrock/eloquent-sluggable": "^12.0",
+    "elegantweb/sanitizer": "^2.3",
+    "spatie/laravel-data": "^4.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^11.0 || ^12.0"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "XTraMile\\News\\NewsServiceProvider"
+      ]
+    }
+  },
+  "authors": [
+    {
+      "role": "Developer",
+      "name": "Auriga Aristo",
+      "email": "aurigaaristo@gmail.com",
+      "homepage": "https://aurigaaristo.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "XTraMile\\News\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "XTraMile\\News\\Tests\\": "tests/"
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}
