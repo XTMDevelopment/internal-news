@@ -5,6 +5,7 @@ namespace XTraMile\News\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use XTraMile\News\Traits\BelongsToTenant;
 
 /**
@@ -47,7 +48,12 @@ class PostView extends Model
         'viewed_at' => 'datetime',
     ];
 
-    public function post()
+    /**
+     * Get the post that this view belongs to.
+     *
+     * @return BelongsTo<Post, PostView>
+     */
+    public function post(): BelongsTo
     {
         return $this->belongsTo(Post::class);
     }

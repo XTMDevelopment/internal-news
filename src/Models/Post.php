@@ -86,6 +86,11 @@ class Post extends Model
         'views_weekly' => 'integer',
     ];
 
+    /**
+     * Get the configuration array for generating slugs.
+     *
+     * @return array<string, array<string, string>>
+     */
     public function sluggable(): array
     {
         return [
@@ -95,16 +100,31 @@ class Post extends Model
         ];
     }
 
+    /**
+     * Get the categories that belong to this post.
+     *
+     * @return BelongsToMany<Category, Post>
+     */
     public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class, 'post_categories');
     }
 
+    /**
+     * Get the tags that belong to this post.
+     *
+     * @return BelongsToMany<Tag, Post>
+     */
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class, 'post_tags');
     }
 
+    /**
+     * Get the views for this post.
+     *
+     * @return HasMany<PostView>
+     */
     public function views(): HasMany
     {
         return $this->hasMany(PostView::class);

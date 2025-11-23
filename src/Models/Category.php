@@ -21,7 +21,7 @@ use XTraMile\News\Traits\BelongsToTenant;
  * @property string|null $description
  * @property int $position
  * @property Carbon|null $created_at
- * @property Carbon|null $update_at
+ * @property Carbon|null $updated_at
  * @property Carbon|null $deleted_at
  * @property-read Tenant $tenant
  * @property-read Collection<int, Post> $posts
@@ -53,6 +53,11 @@ class Category extends Model
 
     protected $guarded = [];
 
+    /**
+     * Get the configuration array for generating slugs.
+     *
+     * @return array<string, array<string, string>>
+     */
     public function sluggable(): array
     {
         return [
@@ -62,6 +67,11 @@ class Category extends Model
         ];
     }
 
+    /**
+     * Get the posts that belong to this category.
+     *
+     * @return BelongsToMany<Post, Category>
+     */
     public function posts(): BelongsToMany
     {
         return $this->belongsToMany(Post::class, 'post_categories');

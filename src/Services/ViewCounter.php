@@ -5,8 +5,19 @@ namespace XTraMile\News\Services;
 use XTraMile\News\Models\Post;
 use XTraMile\News\Models\PostView;
 
+/**
+ * Service for recording and tracking post views.
+ */
 class ViewCounter
 {
+    /**
+     * Record a view for a post.
+     * 
+     * Prevents duplicate views from the same session and increments the post's total view count.
+     *
+     * @param Post $post The post to record a view for
+     * @return void
+     */
     public function record(Post $post): void
     {
         $sessionKey = 'viewed_post_' . $post->id;

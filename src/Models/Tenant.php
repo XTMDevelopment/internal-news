@@ -58,16 +58,31 @@ class Tenant extends Model
         'is_active' => 'boolean',
     ];
 
+    /**
+     * Get the posts for this tenant.
+     *
+     * @return HasMany<Post>
+     */
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
     }
 
+    /**
+     * Get the categories for this tenant.
+     *
+     * @return HasMany<Category>
+     */
     public function categories(): HasMany
     {
         return $this->hasMany(Category::class);
     }
 
+    /**
+     * Get the tags for this tenant.
+     *
+     * @return HasMany<Tag>
+     */
     public function tags(): HasMany
     {
         return $this->hasMany(Tag::class);

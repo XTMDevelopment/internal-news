@@ -5,6 +5,7 @@ namespace XTraMile\News\Models;
 use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -21,6 +22,8 @@ use XTraMile\News\Traits\BelongsToTenant;
  * @property Carbon|null $updated_at
  * @property Carbon|null $deleted_at
  * @property-read Tenant $tenant
+ * @property-read Collection<int, Post> $posts
+ * @property-read int|null $posts_count
  * @method static Builder|Tag newModelQuery()
  * @method static Builder|Tag newQuery()
  * @method static Builder|Tag onlyTrashed()
@@ -46,6 +49,11 @@ class Tag extends Model
 
     protected $guarded = [];
 
+    /**
+     * Get the configuration array for generating slugs.
+     *
+     * @return array<string, array<string, string>>
+     */
     public function sluggable(): array
     {
         return [
@@ -55,6 +63,11 @@ class Tag extends Model
         ];
     }
 
+    /**
+     * Get the posts that belong to this tag.
+     *
+     * @return BelongsToMany<Post, Tag>
+     */
     public function posts(): BelongsToMany
     {
         return $this->belongsToMany(Post::class, 'post_tags');
