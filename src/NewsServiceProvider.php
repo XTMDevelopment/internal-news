@@ -1,6 +1,10 @@
 <?php
 
+namespace XTraMile\News;
+
 use Illuminate\Support\ServiceProvider;
+use XTraMile\News\Services\PostQueryService;
+use XTraMile\News\Services\ViewCounter;
 
 class NewsServiceProvider extends ServiceProvider
 {
@@ -17,6 +21,6 @@ class NewsServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
     }
 }

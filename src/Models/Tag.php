@@ -1,6 +1,6 @@
 <?php
 
-namespace Models;
+namespace XTraMile\News\Models;
 
 use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Traits\BelongsToTenant;
+use XTraMile\News\Traits\BelongsToTenant;
 
 /**
- * Models\Tag
+ * XTraMile\News\Models\Tag
  *
  * @property int $id
  * @property int $tenant_id

@@ -1,9 +1,9 @@
 <?php
 
-namespace Services;
+namespace XTraMile\News\Services;
 
-use Models\Post;
-use Models\PostView;
+use XTraMile\News\Models\Post;
+use XTraMile\News\Models\PostView;
 
 class ViewCounter
 {
@@ -17,7 +17,7 @@ class ViewCounter
 
         session()->put($sessionKey, true);
 
-        PostView::created([
+        PostView::create([
             'tenant_id' => $post->tenant->id,
             'post_id' => $post->id,
             'session_id' => session()->getId(),

@@ -1,6 +1,6 @@
 <?php
 
-namespace Models;
+namespace XTraMile\News\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Models\Tenant
+ * XTraMile\News\Models\Tenant
  *
  * @property int $id
  * @property string $name

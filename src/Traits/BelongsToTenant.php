@@ -1,10 +1,10 @@
 <?php
 
-namespace Traits;
+namespace XTraMile\News\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Models\Tenant;
+use XTraMile\News\Models\Tenant;
 
 trait BelongsToTenant
 {

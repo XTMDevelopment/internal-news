@@ -1,14 +1,14 @@
 <?php
 
-namespace Models;
+namespace XTraMile\News\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Traits\BelongsToTenant;
+use XTraMile\News\Traits\BelongsToTenant;
 
 /**
- * Models\PostView
+ * XTraMile\News\Models\PostView
  *
  * @property int $id
  * @property int $post_id

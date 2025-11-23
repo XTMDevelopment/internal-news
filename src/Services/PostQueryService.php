@@ -1,11 +1,11 @@
 <?php
 
-namespace Services;
+namespace XTraMile\News\Services;
 
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
-use Models\Post;
-use Models\Tenant;
+use XTraMile\News\Models\Post;
+use XTraMile\News\Models\Tenant;
 
 class PostQueryService
 {
