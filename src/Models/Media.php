@@ -53,11 +53,21 @@ class Media extends Model
         'post_id' => 'integer',
     ];
 
+    /**
+     * Get the tenant that this media belongs to.
+     *
+     * @return BelongsTo<Tenant, Media>
+     */
     public function tenant(): BelongsTo
     {
         return $this->belongsTo(Tenant::class);
     }
 
+    /**
+     * Get the post that this media belongs to.
+     *
+     * @return BelongsTo<Post, Media>
+     */
     public function post(): BelongsTo
     {
         return $this->belongsTo(Post::class);

@@ -97,6 +97,11 @@ class Tenant extends Model
         return $this->hasMany(Tag::class);
     }
 
+    /**
+     * Get the medias for this tenant.
+     *
+     * @return HasMany<Media>
+     */
     public function medias(): HasMany
     {
         return $this->hasMany(Media::class);

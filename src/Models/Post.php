@@ -128,6 +128,11 @@ class Post extends Model
         return $this->hasMany(PostView::class);
     }
 
+    /**
+     * Get the medias for this post.
+     *
+     * @return HasMany<Media>
+     */
     public function medias(): HasMany
     {
         return $this->hasMany(Media::class);
