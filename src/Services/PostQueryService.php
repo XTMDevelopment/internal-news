@@ -4,6 +4,7 @@ namespace XTraMile\News\Services;
 
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
+use XTraMile\News\Enums\PostStatus;
 use XTraMile\News\Models\Post;
 use XTraMile\News\Models\Tenant;
 
@@ -24,7 +25,7 @@ class PostQueryService
         $tenantId = $tenant instanceof Tenant ? $tenant->id : $tenant;
 
         return Post::whereTenantId($tenantId)
-            ->where('status', 'published')
+            ->where('status', PostStatus::PUBLISHED->value)
             ->orderByDesc('published_at')
             ->limit($limit)
             ->get();
@@ -42,7 +43,7 @@ class PostQueryService
         $tenantId = $tenant instanceof Tenant ? $tenant->id : $tenant;
 
         return Post::whereTenantId($tenantId)
-            ->where('status', 'published')
+            ->where('status', PostStatus::PUBLISHED->value)
             ->orderByDesc('views_total')
             ->limit($limit)
             ->get();
@@ -62,7 +63,7 @@ class PostQueryService
         $since = Carbon::now()->subDays($days);
 
         return Post::whereTenantId($tenantId)
-            ->where('status', 'published')
+            ->where('status', PostStatus::PUBLISHED->value)
             ->where('published_at', '>=', $since)
             ->orderByDesc('views_weekly')
             ->limit($limit)

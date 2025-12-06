@@ -3,13 +3,13 @@
 namespace XTraMile\News\Models;
 
 use Carbon\Carbon;
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use XTraMile\News\Traits\AppSluggable;
 use XTraMile\News\Traits\BelongsToTenant;
 
 /**
@@ -41,6 +41,8 @@ use XTraMile\News\Traits\BelongsToTenant;
  * @property-read int|null $tags_count
  * @property-read Collection<int, PostView> $views
  * @property-read int|null $views_count
+ * @property-read Collection<int, Media> $medias
+ * @property-read int|null $medias_count
  * @method static Builder|Post newModelQuery()
  * @method static Builder|Post newQuery()
  * @method static Builder|Post onlyTrashed()
@@ -71,7 +73,7 @@ use XTraMile\News\Traits\BelongsToTenant;
 class Post extends Model
 {
     use SoftDeletes;
-    use Sluggable;
+    use AppSluggable;
     use BelongsToTenant;
 
     protected $table = 'posts';
@@ -93,11 +95,7 @@ class Post extends Model
      */
     public function sluggable(): array
     {
-        return [
-            'slug' => [
-                'source' => 'title'
-            ]
-        ];
+        return $this->appSlugConfig('title');
     }
 
     /**
@@ -128,5 +126,10 @@ class Post extends Model
     public function views(): HasMany
     {
         return $this->hasMany(PostView::class);
+    }
+
+    public function medias(): HasMany
+    {
+        return $this->hasMany(Media::class);
     }
 }

@@ -3,12 +3,12 @@
 namespace XTraMile\News\Models;
 
 use Carbon\Carbon;
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use XTraMile\News\Traits\AppSluggable;
 use XTraMile\News\Traits\BelongsToTenant;
 
 /**
@@ -42,7 +42,7 @@ use XTraMile\News\Traits\BelongsToTenant;
 class Tag extends Model
 {
     use SoftDeletes;
-    use Sluggable;
+    use AppSluggable;
     use BelongsToTenant;
 
     protected $table = 'tags';
@@ -56,11 +56,7 @@ class Tag extends Model
      */
     public function sluggable(): array
     {
-        return [
-            'slug' => [
-                'source' => 'name'
-            ]
-        ];
+        return $this->appSlugConfig('name', 0);
     }
 
     /**

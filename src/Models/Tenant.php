@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use XTraMile\News\Traits\AppSluggable;
 
 /**
  * XTraMile\News\Models\Tenant
@@ -26,6 +27,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int|null $categories_count
  * @property Collection<int, Tag> $tags
  * @property int|null $tags_count
+ * @property Collection<int, Media> $medias
+ * @property int|null $medias_count
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property Carbon|null $deleted_at
@@ -48,6 +51,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Tenant extends Model
 {
     use SoftDeletes;
+    use AppSluggable;
 
     protected $table = 'tenants';
 
@@ -57,6 +61,11 @@ class Tenant extends Model
         'settings' => 'array',
         'is_active' => 'boolean',
     ];
+
+    public function sluggable(): array
+    {
+        return $this->appSlugConfig('name', 0);
+    }
 
     /**
      * Get the posts for this tenant.
@@ -86,5 +95,10 @@ class Tenant extends Model
     public function tags(): HasMany
     {
         return $this->hasMany(Tag::class);
+    }
+
+    public function medias(): HasMany
+    {
+        return $this->hasMany(Media::class);
     }
 }
